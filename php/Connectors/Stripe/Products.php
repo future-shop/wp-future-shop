@@ -37,6 +37,19 @@ class Products extends Core {
 	}
 
 	/**
+	 * Register a single product route.
+	 *
+	 * @return array Single product route registration array.
+	 */
+	public static function register_route_product() {
+		return [
+			'namespace' => 'stripe/v7',
+			'route'     => '/product',
+			'args'      => [ 'callback' => [ __CLASS__, 'single' ] ],
+		];
+	}
+
+	/**
 	 * Retrieve all products, based on specific parameters.
 	 *
 	 * @todo Implement parameters.
@@ -45,6 +58,17 @@ class Products extends Core {
 	 */
 	public static function all() {
 		return self::StripeClient()->products->all();
+	}
+
+	/**
+	 * Retrieve a single product, based on the product ID.
+	 *
+	 * @todo Implement parameters.
+	 *
+	 * @return array JSON ready array.
+	 */
+	public static function single( string $id, array $params ) {
+		return self::StripeClient()->products->retrieve( $id, $params );
 	}
 }
 
