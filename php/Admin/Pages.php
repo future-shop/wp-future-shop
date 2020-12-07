@@ -137,8 +137,7 @@ class Pages implements Admin {
 	 * @wp.hook action admin_init
 	 */
 	public static function register_settings() {
-		\register_setting( Stripe::get_option_name() . '_group', 'stripe_public_key' );
-		\register_setting( Stripe::get_option_name() . '_group', 'stripe_secret_key' );	
+		\register_setting( Stripe::get_option_name() . '_group', Stripe::get_option_name() );
 	}
 	
 	/**
@@ -148,6 +147,9 @@ class Pages implements Admin {
 	 */
 	public static function app() {
 		echo \wp_kses( '<div id="future-shop">FutureShop</div>', [ 'div' => [ 'id' => [] ] ] );
+
+		$stripe_settings = get_option( Stripe::get_option_name() );
+
 		?>
 		<div class="wrap">
 		<form method="post" action="options.php">
@@ -158,11 +160,11 @@ class Pages implements Admin {
 			<table class="form-table">
 				<tr valign="top">
 				<th scope="row">Stripe Public Key</th>
-				<td><input type="text" name="stripe_public_key" value="<?php echo esc_attr( get_option('stripe_public_key') ); ?>" /></td>
+				<td><input type="text" name="<?php echo esc_attr( Stripe::get_option_name() ) ?>[public_key]" value="<?php echo esc_attr( $stripe_settings['public_key'] ); ?>" /></td>
 				</tr>
 				<tr valign="top">
 				<th scope="row">Stripe Secret Key</th>
-				<td><input type="text" name="stripe_secret_key" value="<?php echo esc_attr( get_option('stripe_secret_key') ); ?>" /></td>
+				<td><input type="text" name="<?php echo esc_attr( Stripe::get_option_name() ) ?>[secret_key]" value="<?php echo esc_attr( $stripe_settings['secret_key'] ); ?>" /></td>
 				</tr>
 			</table>
 			

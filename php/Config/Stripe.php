@@ -33,11 +33,6 @@ class Stripe {
 	 *
 	 * @return void.
 	 */
-	public static function register_settings() {
-		\register_setting( self::get_option_name() . '_group', 'stripe_public_key' );
-		\register_setting( self::get_option_name() . '_group', 'stripe_secret_key' );	
-	}
-
 	public static function get_option_name() {
 		return 'future_shop_stripe_settings';
 	}
@@ -84,9 +79,9 @@ class Stripe {
 		} else {
 			$options = self::get_options();
 
-			$key = $options['stripe_public_key'] ?: false;
+			$key = $options['public_key'] ?: false;
 		}
-
+		
 		return $key;
 	}
 
@@ -103,7 +98,7 @@ class Stripe {
 		} else {
 			$options = self::get_options();
 
-			$key = $options['stripe_secret_key'] ?: false;
+			$key = $options['secret_key'] ?: false;
 		}
 
 		return $key;
