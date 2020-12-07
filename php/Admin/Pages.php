@@ -10,6 +10,7 @@ namespace FutureShop\Admin;
 use FutureShop\Plugin;
 use FutureShop\WP\Hooks;
 use FutureShop\Config\Data;
+use FutureShop\Config\Stripe;
 
 /**
  * Admin Menus
@@ -130,6 +131,16 @@ class Pages implements Admin {
 		);
 	}
 
+	/**
+	 * Register the allowed options.
+	 *
+	 * @wp.hook action admin_init
+	 */
+	public static function register_settings() {
+		\register_setting( Stripe::get_option_name() . '_group', 'stripe_public_key' );
+		\register_setting( Stripe::get_option_name() . '_group', 'stripe_secret_key' );	
+	}
+	
 	/**
 	 * Loads the app wrapper aaaaand... that's about it. 👉🏻
 	 *
