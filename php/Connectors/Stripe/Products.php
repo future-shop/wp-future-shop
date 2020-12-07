@@ -44,7 +44,7 @@ class Products extends Core {
 	public static function register_route_product() {
 		return [
 			'namespace' => 'stripe/v7',
-			'route'     => '/product',
+			'route'     => '/product/(?P<id>[\a-zA-Z0-9_]+)',
 			'args'      => [ 'callback' => [ __CLASS__, 'single' ] ],
 		];
 	}
@@ -67,8 +67,8 @@ class Products extends Core {
 	 *
 	 * @return array JSON ready array.
 	 */
-	public static function single( string $id, array $params ) {
-		return self::StripeClient()->products->retrieve( $id, $params );
+	public static function single( object $request ) {
+		return self::StripeClient()->products->retrieve( $request->get_param( 'id' )  );
 	}
 }
 

@@ -19,14 +19,6 @@ class Stripe {
 	 */
 	private $option_name = 'future_shop_stripe_settings';
 
-	/**
-	 * Construct the allow options.
-	 *
-	 * @return void.
-	 */
-	public static function load() {
-		\add_action( 'admin_init', self::register_settings() );
-	}
 
 	/**
 	 * Construct the allow options.
@@ -43,7 +35,7 @@ class Stripe {
 	 * @return mixed Options array or false.
 	 */
 	private function get_options() {
-		return \get_option( $this->option_name ) ?: [];
+		return \get_option( self::get_option_name() ) ?: [];
 	}
 
 	/**
