@@ -1,0 +1,7 @@
+{
+    "plugins": [
+        ".",
+        "https://downloads.wordpress.org/plugin/query-monitor.zip"
+    ],
+    "phpVersion": "8.1"
+}

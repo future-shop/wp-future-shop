@@ -1,0 +1,15 @@
+{
+    "name": "wp-future-shop",
+    "version": "0.0.1",
+    "description": "WordPress plugin for connecting to Future Shop Cloud.",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/future-shop/wp-future-shop.git"
+    },
+    "license": "MPL-2.0",
+    "author": "Future Shop <support@futureshop.cloud>",
+    "scripts": {
+      "setup": "npm install; composer install && composer run phpcs-config"
+    },
+    "devDependencies": {}
+}
